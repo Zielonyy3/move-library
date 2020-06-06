@@ -96,37 +96,46 @@ class MoveObject {
     checkPosition() {
         console.log(this.creator.objectList[1].offsetTop);
         let index = this.objectIndex;
-        this.creator.objectList.forEach((el, i) => {
-            if (i != this.objectIndex && i != this.objectIndex + 1) {
+        let biggerIndex = index + 1;
+        const elemList = this.creator.objectList
+        elemList.forEach((el, i) => {
+            if (i != this.objectIndex) {
                 el.domElement.style.position = 'relative';
-                el.domElement.style.top = '0';
+                el.domElement.style.backgroundColor = 'red';
+                el.domElement.style.top = 0;
             }
-
-            if (this.newPositionTop + this.offsetTop - this.domElement.offsetHeight / 2 > el.offsetTop) {
-                if (i != this.objectIndex) {
-                    el.domElement.style.top = '-3em';
-                }
+            // -this.domElement.offsetHeight
+            if (this.newPositionTop + this.offsetTop > el.offsetTop) {
                 index = i;
-            } else {
-                if (el.objectIndex != i + 1) {
-                    el.domElement.style.backgroundColor = 'red';
-                    this.creator.objectList[i + 1].domElement.style.backgroundColor = 'blue';
-                }
-                el.domElement.style.top = '3em';
+                biggerIndex = i + 1;
             }
-
-            if (i == index)
-                el.domElement.style.backgroundColor = 'green';
-
-
-
         })
-        // if (index != this.objectIndex) {
-        //     // this.creator.objectList[index].domElement.style.position = 'relative';
-        //     this.creator.objectList[index].domElement.style.top = '-3em';
-        //     this.creator.objectList[index + 1].domElement.style.top = '3em';
+        console.log(index);
+        if (index != this.objectIndex) {
+            elemList[index].domElement.style.backgroundColor = 'green';
+            // elemList[index].domElement.style.top = '-1.5em';
+        }
+        if (biggerIndex < elemList.length) {
+            elemList[biggerIndex].domElement.style.backgroundColor = 'blue';
+        }
+
+        const spacing = 2.3;
+
+        elemList.forEach((el, i) => {
+            if (i < biggerIndex && i != this.objectIndex) {
+                el.domElement.style.top = `${-spacing}em`;
+            } else if (index != this.objectIndex && i != this.objectIndex)
+                el.domElement.style.top = `${spacing}em`;
+        })
+        // for (let i = biggerIndex; i < elemList.length; i++) {
+        //     elemList[i].domElement.style.top = '1.5em';
         // }
 
+
+        // if (index != this.objectIndex) {
+        //     elemList[index].
+
+        // }
         this.newIndex = index;
         this.domElement.textContent = this.newIndex;
     }
