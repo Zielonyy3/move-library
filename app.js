@@ -88,9 +88,9 @@ class MoveObject {
 
     moveElement(e) {
         this.newPositionTop = e.clientY - this.pointY - this.offsetTop;
+        this.domElement.style.left = `${e.clientX - this.pointX - this.offsetLeft}px`;
         this.domElement.style.top = this.newPositionTop + 'px';
         this.checkPosition()
-        // this.domElement.style.left = `${e.clientX - this.clickX - this.offsetLeft}px`;
     }
 
     checkPosition() {

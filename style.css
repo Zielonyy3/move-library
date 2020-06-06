@@ -10,7 +10,37 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    font-family: roboto, sans-serif;
 }
+
+.instruction {
+    position: fixed;
+    display: flex;
+    flex-flow: column;
+    top: 30px;
+    left: 30px;
+}
+
+.instruction>div {
+    display: flex;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.instruction>div>div {
+    width: 100px;
+    height: 30px;
+    margin-right: 1.2em;
+}
+
+.instruction .green {
+    background-color: green;
+}
+
+.instruction .blue {
+    background-color: blue;
+}
+
 
 .moveList {
     list-style: none;
